@@ -46,8 +46,8 @@ app.post("/create", (req, res) => {
   res.json(Movies);
 });
 
-//update on fav
-app.put("/put/:id", (req, res) => {
+//update on fav (fav)
+app.put("/putFav/:id", (req, res) => {
   const idd = req.params.id;
   for (let i = 0; i < Movies.length; i++) {
     if (Movies[i].id === Number(idd)) {
@@ -56,6 +56,18 @@ app.put("/put/:id", (req, res) => {
   }
   res.json(Movies);
 });
+
+//update on fav (unfav)
+app.put("/putUn/:id", (req, res) => {
+    const idd = req.params.id;
+    for (let i = 0; i < Movies.length; i++) {
+      if (Movies[i].id === Number(idd)) {
+        Movies[i].isFav = false;
+      }
+    }
+    res.json(Movies);
+  });
+
 
 //delete
 app.delete("/delete/:id", (req, res) => {
