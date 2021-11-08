@@ -2,19 +2,29 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+
 const PORT = 5500;
 
 const fs = require("fs");
 
 let nweM = [];
 
+//read File and put it inside global array
 fs.readFile("./movies.json", (err, data) => {
-  nweM = JSON.parse(data.toString()); //to javascript
+  nweM = JSON.parse(data.toString());
+  // parse to javascript and the string to read it ( buffer )
 });
+
+//write on file
+const addToFileFunction = (newMov) => {
+  fs.writeFile("./movies.json", JSON.stringify(newMov), () => {
+    //to json
+  });
+};
 
 //get not deleted
 app.get("/get", (req, res) => {
-  const notDeletedMov = []; //ok?? //مايحتاج اكتب عالملف لانه بس قيت
+  const notDeletedMov = []; //umm?? //مايحتاج اكتب عالملف لانه بس قيت
   nweM.map((ele) => {
     if (ele.isDeleted === false) {
       notDeletedMov.push({ ele });
@@ -50,7 +60,7 @@ app.post("/create", (req, res) => {
     isFav: false,
     isDeleted: false,
   }); //يضيف الاسم وباي ديفولت بيكون الفييفوريت والديليتيد فولس
-  fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {}); //to json
+  addToFileFunction(nweM);
   res.json(nweM);
 });
 
@@ -62,19 +72,20 @@ app.put("/putFav/:id", (req, res) => {
       nweM[i].isFav = true;
     }
   }
-  fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {});
+  addToFileFunction(nweM);
+  //   fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {}); // اسهل اعرفها فوق مرة وحدة وبس ارسل هنا
   res.json(nweM);
 });
 
 //update on fav (unfav)
 app.put("/putUn/:id", (req, res) => {
   const idd = req.params.id;
-  for (let i = 0; i < Movies.length; i++) {
+  for (let i = 0; i < nweM.length; i++) {
     if (nweM[i].id === Number(idd)) {
       nweM[i].isFav = false;
     }
   }
-  fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {});
+  addToFileFunction(nweM);
   res.json(nweM);
 });
 
@@ -86,7 +97,7 @@ app.put("/delete/:id", (req, res) => {
       nweM[i].isDeleted = true;
     }
   }
-  fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {});
+  addToFileFunction(nweM);
   res.json(nweM);
 });
 
