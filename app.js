@@ -9,7 +9,7 @@ const fs = require("fs");
 let nweM = [];
 
 fs.readFile("./movies.json", (err, data) => {
-  nweM = JSON.parse(data.toString());
+  nweM = JSON.parse(data.toString()); //to javascript
 });
 
 //get not deleted
@@ -50,7 +50,7 @@ app.post("/create", (req, res) => {
     isFav: false,
     isDeleted: false,
   }); //يضيف الاسم وباي ديفولت بيكون الفييفوريت والديليتيد فولس
-  fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {});
+  fs.writeFile("./movies.json", JSON.stringify(nweM), (err) => {}); //to json
   res.json(nweM);
 });
 
@@ -78,8 +78,8 @@ app.put("/putUn/:id", (req, res) => {
   res.json(nweM);
 });
 
-//delete
-app.delete("/delete/:id", (req, res) => {
+//delete (soft delete that mean update!!)
+app.put("/delete/:id", (req, res) => {
   const iddd = req.params.id;
   for (let i = 0; i < nweM.length; i++) {
     if (nweM[i].id === Number(iddd)) {

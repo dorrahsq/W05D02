@@ -1,8 +1,1 @@
-[
-  { "id": 1, "name": "friends", "isFav": false, "isDeleted": false },
-  { "id": 2, "name": "broklyn99", "isFav": true, "isDeleted": false },
-  { "id": 3, "name": "white collars", "isFav": false, "isDeleted": true },
-  { "id": 4, "name": "theBigBangTheory", "isFav": false, "isDeleted": true },
-  { "id": 5, "name": "theBigBangTheory", "isFav": false, "isDeleted": false },
-  { "id": 6, "name": "theBigBangTheory", "isFav": false, "isDeleted": true }
-]
+[{"id":1,"name":"friends","isFav":false,"isDeleted":true},{"id":2,"name":"broklyn99","isFav":true,"isDeleted":true},{"id":3,"name":"white collars","isFav":false,"isDeleted":true},{"id":4,"name":"theBigBangTheory","isFav":false,"isDeleted":true},{"id":5,"name":"theBigBangTheory","isFav":false,"isDeleted":false},{"id":6,"name":"theBigBangTheory","isFav":false,"isDeleted":true}]
